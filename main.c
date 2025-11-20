@@ -1,8 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void show_usages(void);
 
-void main(){
+
+void show_usages(void){
+	printf("\n\tascii-encryptor\tInvalid Usage\n\t\tUsage:\tascii-encrypt <fileToEncrypt> <OutputFile>\n");
+}
+
+void main(int argc, char *argv[]){
+
+	// check if correct arguments are supplied
+	if (argc < 3){
+		show_usages();
+		exit(0); // quit program
+	}
+
 	FILE *fp = fopen("test.txt","r"); // reading file
 	FILE *fpw = fopen("test2.txt","w");  // writing file
 	char buf;
