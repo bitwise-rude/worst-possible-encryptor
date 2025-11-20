@@ -10,6 +10,26 @@ void show_usages(void);
 
 void show_usages(void){
 	printf("\n\tascii-encryptor\tInvalid Usage\n\t\tUsage:\tascii-encrypt <fileToEncrypt> <OutputFile> <en/de>\n");
+	exit(0);
+}
+
+FILE *read_file(char *file,char *mode)
+{
+	FILE *fp = fopen(file,mode);
+
+
+	if (fp == NULL){
+		printf("There has been some error while opening the file. Does that file exist?\n\n");
+		exit(-1);
+	}
+
+	return fp;
+
+}
+
+void encrypt(char *master, char *slave)
+{
+	printf("ENCRYPTING");
 }
 
 void main(int argc, char *argv[]){
@@ -17,20 +37,18 @@ void main(int argc, char *argv[]){
 	// check if correct arguments are supplied
 	if (argc < 4){
 		show_usages();
-		exit(0); // quit program
 	}
 	
-	if (strcmp(argv[3],"en")) == 0 {
-			
+	if ((strcmp(argv[3],"en")) == 0) {
+		encrypt(argv[1],argv[2]);			
 	}
 
-	else if(strcmp(argv[3],"de")) == 0{
+	else if((strcmp(argv[3],"de")) == 0){
 	
 	}
 
 	else{
 		show_usages();
-		exit(0);
 	}
 
 	FILE *fp = fopen(argv[1],"r"); // reading file
@@ -43,9 +61,6 @@ void main(int argc, char *argv[]){
 		exit(-1);
 	}
 	
-	// find out if it's encrypting or decrypting
-	switch (strcmp(argv[3],"enc"))
-	{
 
 	// read byte by byte (char by char) and write it to the new file 
 	while ((buf = getc(fp))!= EOF){
