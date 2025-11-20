@@ -64,7 +64,7 @@ void decrypt(char *master, char *slave)
 	printf("\nSucessfully Decrypted\n");
 }
 
-void main(int argc, char *argv[]){
+int main(int argc, char *argv[]){
 
 	// check if correct arguments are supplied
 	if (argc < 4)
@@ -81,6 +81,6 @@ void main(int argc, char *argv[]){
 		show_usages();
 	}
 
-	char buf;	
-
+	
+	return 0;
 }
