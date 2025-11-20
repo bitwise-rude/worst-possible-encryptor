@@ -5,6 +5,7 @@
 void show_usages(void);
 FILE *read_file(char *,char *);
 void encrypt(char *,char *);
+void decrypt(char *,char *);
 
 void show_usages(void){
 	printf("\n\tascii-encryptor\tInvalid Usage\n\t\tUsage:\tascii-encrypt <fileToEncrypt> <OutputFile> <en/de>\n");
@@ -45,6 +46,24 @@ void encrypt(char *master, char *slave)
 	printf("\nSucessfully Encrypted\n");
 }
 
+void decrypt(char *master, char *slave)
+{
+	FILE *source = read_file(master,"r");
+	FILE *destination = read_file(slave,"w");
+
+	int buf;
+
+	while (fscanf(source,"%d", &buf) == 1){
+		fprintf(destination,"%c",buf);
+	}
+	
+	// close the files 
+	fclose(source);
+	fclose(destination);
+
+	printf("\nSucessfully Decrypted\n");
+}
+
 void main(int argc, char *argv[]){
 
 	// check if correct arguments are supplied
@@ -55,7 +74,7 @@ void main(int argc, char *argv[]){
 		encrypt(argv[1],argv[2]);			
 	
 	else if((strcmp(argv[3],"de")) == 0){
-	
+		decrypt(argv[1],argv[2]);	
 	}
 
 	else{
